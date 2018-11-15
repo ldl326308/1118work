@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+
+		<div class="mui-slider">
+			<div id='imgTop' class="mui-slider-group">
+				
+			</div>
+		</div>
+
+
+		<div class="mui-content">
+			<div class="mui-row">
+				<div id="divBody" class="mui-col-sm-12 mui-col-xs-12">
+					
+				</div>
+			</div>
+		</div>
+
+		<script>
+			var url = window.location.search;
+			url = "https://news-at.zhihu.com/api/4/news/"+url.substring(4);
+			
+			mui.ajax(url,{
+				type:'get',	              
+				success:function(data){
+					document.getElementById("imgTop").innerHTML="<div class='mui-slider-item'><a href='#'><img src='"+data.image+"' /></a></div>";
+					document.getElementById("divBody").innerHTML = data.body;
+				},
+				error:function(xhr,type,errorThrown){
+					//异常处理；
+					alert(type);
+				}
+			});
+		</script>
+
+	</body>
+</html>
